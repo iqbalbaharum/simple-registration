@@ -23,10 +23,10 @@ ln -s /opt/nodejs/bin/npm /usr/bin/npm
 
 # Get the application source code from the Google Cloud Repository.
 # git requires $HOME and it's not set during the startup script.
-export HOME=/root
-git config --global credential.helper gcloud.sh
+#export HOME=/root
+#git config --global credential.helper gcloud.sh
 #git clone https://source.developers.google.com/p/$PROJECTID /opt/app
-git clone https://github.com/iqbalbaharum/simple-registration.git /opt/app
+#git clone https://github.com/iqbalbaharum/simple-registration.git /opt/app
 
 # Install app dependencies
 cd /opt/app/simple-registration
