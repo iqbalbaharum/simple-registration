@@ -1,0 +1,105 @@
+
+/*******************************************************
+ * OVERRIDE MATERIALIZECSS
+ ********************/
+body{
+  font-family: "Source Code Pro", "monaco", "PT Mono", "Courier", monospace;
+  font-weight: 400;
+  font-size: 18px;
+  /*background-color: #000;
+  color: #fff;*/
+}
+
+.tabs .tab a:hover, .tabs .tab a.active{
+  font-weight: bold;
+}
+
+.tabs .tab  a {
+  font-size: 24px;
+}
+
+.divider {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+nav {
+
+}
+
+.btn, .btn-large, .btn:hover, .btn-large:hover {
+  box-shadow: none;
+}
+
+a.text-hyperlink {
+  color: #00f;
+  padding-bottom: 2px;
+  border-bottom: dotted 1px #00f;
+}
+
+/*******************************************************
+ * CUSTOM
+ ********************/
+.wrapper {
+  padding-top: 60px;
+}
+
+.half-wrapper {
+  padding-top: 30px;
+}
+
+.events {
+  margin-top: 60px;
+}
+
+.events ul, .locations ul
+{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.locations ul {
+  text-align: center;
+}
+
+.events ul li {
+  width: 330px;
+}
+
+.events ul li, .locations ul li
+{
+  margin-right: 16px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.events ul li a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+.meetup-title {
+  font-weight: bold;
+  height: 48px;
+}
+
+.meetup-location, .meetup-date, .meetup-time {
+  font-size:12px;
+}
+
+.meetup-number {
+  margin-top:5px;
+  text-align: right;
+}
+
+.info {
+  color: green;
+}
+
+.notes {
+  font-size: 10px;
+  color: grey;
+  padding-top: -100px;
+}

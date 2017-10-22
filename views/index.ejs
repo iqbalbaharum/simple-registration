@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DevCon Happening</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Devcon Events</title>
+  <!-- <link rel="icon" type="image/x-icon" href="css/e_nDl_icon.ico"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+    <head>
+      <nav>
+        <div class="nav-wrapper container">
+          <a href="#" class="brand-logo">Devcon</a>
+          <ul class="right hide-on-med-and-down">
+          </ul>
+        </div>
+      </nav>
+    </head>
+
+    <main>
+
+      <div class="container">
+
+        <div class="section center-align">
+          <h4>Devcon Academia: Decoupled - Android + Firebase</h4>
+          <div class="info">Sat, October 28, 2017 | <span class="space">10:00 AM – 16:30 PM</span> </div>
+          <br />
+          <div><b>Paper &amp; Toast</b><br /> Level 13A, Office Tower, <br />Fahrenheit88, Jalan Gading, Bukit Bintang, <br />55100 Kuala Lumpur</div>
+          <a href="https://www.google.com/maps/place/3%C2%B008'49.2%22N+101%C2%B042'46.5%22E/@3.146994,101.710718,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!7e2!8m2!3d3.1469937!4d101.7129125" target="_blank">(3.146994, 101.712912)</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+          <h5 class="center-align">Registration</h5>
+          <div class="row">
+            <form method='post' class="col s12">
+              <div class="row">
+                <div class="col s2"></div>
+                <div class="input-field col s8">
+                  <input id="full_name" name="name" type="text" class="validate" required>
+                  <label for="full_name">Full Name</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s2"></div>
+                <div class="input-field col s4">
+                  <input id="email" name="email" type="email" class="validate" required>
+                  <label for="email">Email</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="phone" type="number" class="validate" required>
+                  <label for="phone">Mobile Number</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s2"></div>
+                <div class="input-field col s4">
+                  <select name="skills">
+                    <option value="" disabled selected>Choose</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                  </select>
+
+                  <label>Programming Skills</label>
+                </div>
+                <div class="col s4">
+                  <div class="input-field">
+                    <input id="github" name="github" type="text">
+                    <label for="github">Github URL</label>
+                  </div>
+                  <span class="notes">If you don't Github account, please register at <a href="http://www.github.com">github.com</a></span>
+                </div>
+              </div>
+
+              <div class="row half-wrapper">
+                <div class="col s5"></div>
+                <div class="col s4">
+                  <button class="btn-large waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    </script>
+</body>
+</html>
