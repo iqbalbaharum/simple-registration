@@ -5,7 +5,7 @@ var express = require('express'),
 
 var Attendee = require('./app/models/attendee');
 
-var port = 3000;
+var port = 8080;
 
 var app = express();
 
