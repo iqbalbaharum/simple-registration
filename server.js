@@ -30,7 +30,8 @@ app.get('/admin', (req, res) => {
     //console.log(attendees);
 
     res.render('admin', {
-      attendees: attendees
+      attendees: attendees,
+      count: attendees.length
     });
   });
 });
