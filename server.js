@@ -28,7 +28,7 @@ app.post("/register", (req, res) => {
     if (err)
       res.send(err);
 
-    // res.render('success');
+    res.render('success');
   });
 });
 
