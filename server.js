@@ -22,6 +22,19 @@ app.get('/register', (req, res) => {
   res.render('index');
 });
 
+app.get('/admin', (req, res) => {
+  Attendee.find({}, function(err, attendees) {
+    if(err)
+      res.send(err);
+
+    //console.log(attendees);
+
+    res.render('admin', {
+      attendees: attendees
+    });
+  });
+});
+
 app.post("/register", (req, res) => {
   var newAttendee = new Attendee(req.body);
   newAttendee.save(function(err, attendee) {

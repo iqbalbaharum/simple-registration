@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DevCon Happening</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <!-- <link rel="icon" type="image/x-icon" href="css/e_nDl_icon.ico"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <head>
+      <nav>
+        <div class="nav-wrapper container">
+          <a href="#" class="brand-logo">DevCon</a>
+          <ul class="right hide-on-med-and-down">
+          </ul>
+        </div>
+      </nav>
+    </head>
+
+    <main>
+
+      <div class="container">
+
+        <div class="section wrapper center-align">
+          <h1>24</h1>
+          <h4>participants</h4>
+        </div>
+
+        <div class="section">
+          <table>
+            <thead>
+              <tr>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Android Programming Skills</th>
+                  <th>Github</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% attendees.forEach(function(attendee) { %>
+                <tr>
+                  <td><%= attendee.name %></td>
+                  <td><%= attendee.email %></td>
+                  <td><%= attendee.skills %></td>
+                  <td><%= attendee.github %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>
