@@ -103,3 +103,7 @@ a.text-hyperlink {
   color: grey;
   padding-top: -100px;
 }
+
+.notes-medium {
+  font-size: 12px;
+}
