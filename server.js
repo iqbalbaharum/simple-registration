@@ -9,6 +9,7 @@ var port = 8080;
 
 var app = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/decoupled', {
   useMongoClient: true
 });
