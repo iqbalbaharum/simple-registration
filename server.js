@@ -1,7 +1,8 @@
 var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
-    ejs = require('ejs');
+    ejs = require('ejs'),
+    auth = require('http-auth');
 
 var Attendee = require('./app/models/attendee');
 
@@ -23,7 +24,15 @@ app.get('/register', (req, res) => {
   res.render('index');
 });
 
-app.get('/admin', (req, res) => {
+// authentication
+var basic = auth.basic({
+      realm: "Authentication Area"
+  }, function (username, password, callback) {
+      callback(username === "decoupled" && password === "123jaya");
+  }
+);
+
+app.get('/admin', auth.connect(basic), (req, res) => {
   Attendee.find({}, function(err, attendees) {
     if(err)
       res.send(err);
