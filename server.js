@@ -21,7 +21,19 @@ app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
 
 app.get('/register', (req, res) => {
-  res.render('index');
+  Attendee.find({}, function(err, attendees) {
+    if(err)
+      res.send(err);
+
+    var isClosed = false;
+    if(attendees.length > 50) {
+      isClosed = true;
+    }
+
+    res.render('index', {
+      isClosed: isClosed
+    })
+  });
 });
 
 // authentication

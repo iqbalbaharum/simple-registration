@@ -1,0 +1,58 @@
+<div class="section">
+  <h5 class="center-align">Registration</h5>
+  <div class="row">
+    <form method='post' class="col s12">
+      <div class="row">
+        <div class="col m2"></div>
+        <div class="input-field col s12 m8">
+          <input id="full_name" name="name" type="text" class="validate" required>
+          <label for="full_name">Full Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s2"></div>
+        <div class="input-field col s12 m4">
+          <input id="email" name="email" type="email" class="validate" required>
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input id="phone" type="number" class="validate" required>
+          <label for="phone">Mobile Number</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s2"></div>
+        <div class="input-field col s12 m4">
+          <select name="skills">
+            <option value="" disabled selected>Choose</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+
+          <label>Android Programming Skills</label>
+        </div>
+        <div class="col s12 m4">
+          <div class="input-field">
+            <input id="github" name="github" type="text">
+            <label for="github">Github URL</label>
+          </div>
+          <span class="notes">If you don't Github account, please register at <a href="http://www.github.com">github.com</a></span>
+        </div>
+      </div>
+
+      <div class="row half-wrapper">
+        <div class="col s4 m5"></div>
+        <div class="col s4 m4">
+          <button class="btn-large waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>
