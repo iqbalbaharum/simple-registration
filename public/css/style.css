@@ -98,6 +98,14 @@ a.text-hyperlink {
   color: green;
 }
 
+.warning {
+  color: orange;
+}
+
+.alert {
+  color: red;
+}
+
 .notes {
   font-size: 10px;
   color: grey;

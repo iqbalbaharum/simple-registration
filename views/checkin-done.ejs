@@ -20,45 +20,8 @@
       <div class="container">
 
         <div class="section wrapper center-align">
-          <h1><%= count %></h1>
-          <h4>participants</h4>
+          <% include partial/checkin-success %>
         </div>
-
-        <div class="section">
-          <table class="striped">
-            <thead>
-              <tr>
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Android Programming Skills</th>
-                  <th>Github</th>
-                  <th>Status</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% attendees.forEach(function(attendee) { %>
-                <tr>
-                  <td><%= attendee.name %></td>
-                  <td><%= attendee.email %></td>
-                  <td><%= attendee.skills %></td>
-                  <td><%= attendee.github %></td>
-                  <td>
-                    <% if(attendee.checkin == 'NONE') {%>
-                        <b class="alert">None</b>
-                    <% } else if(attendee.checkin == 'CHECKIN') {%>
-                        <b class="info">Check-In</b>
-                    <% } else if(attendee.checkin == 'WALKIN') {%>
-                        <b class="warning">Walk-In</b>
-                    <% } %>
-
-                  </td>
-                </tr>
-              <% }); %>
-            </tbody>
-          </table>
-        </div>
-
 
       </div>
 

@@ -9,6 +9,11 @@ var AttendeeSchema = new Schema({
   email: String,
   skills: String,
   github: String,
+  checkin: {
+    type: String,
+    enum: ['NONE', 'CHECKIN', 'WALKIN'],
+    default: 'NONE'
+  },
   CreatedAt: {
     type: Date,
     default: Date.Now
