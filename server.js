@@ -51,14 +51,86 @@ app.get('/admin', auth.connect(basic), (req, res) => {
     if(err)
       res.send(err);
 
-    //console.log(attendees);
+    var tracks, states, genders;
 
-    res.render('admin', {
-      attendees: attendees,
-      count: attendees.length
+    // aggregate result
+    data_field_count("$track", function(tres) {
+      tracks = tres;
+      data_field_count("$gender", function(tgen) {
+        genders = tgen;
+        data_field_count("$state", function(tsta) {
+          states = tsta;
+
+          // open admin
+          res.render('admin', {
+            attendees: attendees,
+            count: attendees.length,
+            tracks: tracks,
+            genders: genders,
+            states: states
+          });
+        })
+      });
     });
   });
 });
+
+app.get("/count/track", (req, res) => {
+  data_field_count("$track", function(result) {
+    res.json(result);
+  });
+});
+
+app.get("/count/gender", (req, res) => {
+  Attendee.aggregate([
+    {
+        $group: {
+          _id: "$gender",
+          total: {$sum: 1}
+        }
+    }], function(err, result) {
+      if(err) {
+        res.send(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
+app.get("/count/state", (req, res) => {
+  Attendee.aggregate([
+    {
+        $group: {
+          _id: "$state",
+          total: {$sum: 1}
+        }
+    }], function(err, result) {
+      if(err) {
+        res.send(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
+data_field_count = function(field, callback) {
+  Attendee.aggregate([
+    {
+        $group: {
+          _id: field,
+          total: {$sum: 1}
+        }
+    }], function(err, result) {
+      if(err) {
+        res.send(err);
+      } else {
+        callback(result);
+      }
+    }
+  );
+}
 
 app.post("/register", (req, res) => {
   var newAttendee = new Attendee(req.body);
@@ -109,6 +181,39 @@ app.post("/walkin", (req, res) => {
 
     res.render('checkin-done');
   });
+});
+
+app.get("/json", (req, res) => {
+  Attendee.find({}, function(err, attendees) {
+    if(err)
+      res.send(err);
+
+    res.json(attendees);
+  });
+});
+
+app.get("/admin/count/:track", (req, res) => {
+
+  var filter = {};
+
+  if(req.params.track === 'all') {
+    filter = {}
+  } else {
+    filter = {track: req.params.track.toLowerCase()};
+  }
+
+  Attendee.count(
+    filter,
+    function(err, count) {
+      if(err)
+        res.send(err);
+
+      res.json({
+        success: true,
+        count: count
+      });
+
+    });
 });
 
 // listen

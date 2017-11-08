@@ -24,6 +24,39 @@
           <h4>participants</h4>
         </div>
 
+        <div class="section wrapper">
+            <div class="row">
+              <% tracks.forEach(function(track) { %>
+                <div class="col s2 center-align red">
+                  <h1><%= track.total %></h1>
+                  <h4><%= track._id %></h4>
+                </div>
+              <% }); %>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="row">
+              <% genders.forEach(function(gender) { %>
+                <div class="col s2 center-align blue">
+                  <h1><%= gender.total %></h1>
+                  <h4><%= gender._id %></h4>
+                </div>
+              <% }); %>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="row">
+              <% states.forEach(function(state) { %>
+                <div class="col s2 center-align yellow">
+                  <h1><%= state.total %></h1>
+                  <h4><%= state._id %></h4>
+                </div>
+              <% }); %>
+            </div>
+        </div>
+
         <div class="section">
           <table class="striped">
             <thead>
@@ -72,8 +105,8 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script>
 
+    <script>
     </script>
 </body>
 </html>
