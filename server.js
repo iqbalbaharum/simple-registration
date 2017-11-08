@@ -42,7 +42,7 @@ app.get('/register', (req, res) => {
 var basic = auth.basic({
       realm: "Authentication Area"
   }, function (username, password, callback) {
-      callback(username === "decoupled" && password === "123jaya");
+      callback(username === "meetup3" && password === "123jaya");
   }
 );
 
