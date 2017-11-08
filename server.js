@@ -5,13 +5,15 @@ var express = require('express'),
     auth = require('http-auth');
 
 var Attendee = require('./app/models/attendee');
+var Email = require('./app/controller/mailController');
+var config = require('./config');
 
-var port = 8080;
+var port = 3000;
 
 var app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/decoupled', {
+mongoose.connect('mongodb://localhost/meetup3', {
   useMongoClient: true
 });
 
@@ -61,10 +63,12 @@ app.get('/admin', auth.connect(basic), (req, res) => {
 app.post("/register", (req, res) => {
   var newAttendee = new Attendee(req.body);
   newAttendee.save(function(err, attendee) {
-    if (err)
+    if (err) {
       res.send(err);
-
-    res.render('success');
+    } else {
+      Email.send_welcome_mail(req, res, attendee._id);
+      res.render('success');
+    }
   });
 });
 
@@ -82,7 +86,7 @@ app.post("/checkin", (req, res) => {
     function(err, attendee) {
       if(err)
         res.send(err);
-        
+
       if(attendee != null){
           res.render('checkin-done');
       } else {
