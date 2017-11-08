@@ -28,7 +28,7 @@ app.get('/register', (req, res) => {
       res.send(err);
 
     var isClosed = false;
-    if(attendees.length > 50) {
+    if(attendees.length > 1000) {
       isClosed = true;
     }
 
