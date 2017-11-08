@@ -184,12 +184,36 @@ app.post("/walkin", (req, res) => {
 });
 
 app.get("/json", (req, res) => {
-  Attendee.find({}, function(err, attendees) {
-    if(err)
-      res.send(err);
 
-    res.json(attendees);
-  });
+  var token = req.body.token || req.query.token || req.headers['authorization'];
+
+  if(token) {
+
+    var key = token.split(" ");
+
+    if(key[0] !== "Bearer" ||
+        key[1] !== 'WHOGIVEAFUCK') {
+      return res.status(500).send({
+        success: false,
+        message: "Invalid token"
+      });
+    }
+
+    Attendee.find({}, function(err, attendees) {
+      if(err)
+        res.send(err);
+
+      res.json(attendees);
+    });
+
+  } else {
+
+    return res.status(500).send({
+      success: false,
+      message: "No authorization token"
+    });
+  }
+
 });
 
 app.get("/admin/count/:track", (req, res) => {
