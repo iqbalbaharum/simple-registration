@@ -30,8 +30,11 @@
               <tr>
                   <th>Full Name</th>
                   <th>Email</th>
-                  <th>Android Programming Skills</th>
+                  <th>Knowledges</th>
                   <th>Github</th>
+                  <th>Gender</th>
+                  <th>State</th>
+                  <th>Track</th>
                   <th>Status</th>
               </tr>
             </thead>
@@ -43,6 +46,9 @@
                   <td><%= attendee.email %></td>
                   <td><%= attendee.skills %></td>
                   <td><%= attendee.github %></td>
+                  <td><%= attendee.gender %></td>
+                  <td><%= attendee.state %></td>
+                  <td><%= attendee.track %></td>
                   <td>
                     <% if(attendee.checkin == 'NONE') {%>
                         <b class="alert">None</b>
