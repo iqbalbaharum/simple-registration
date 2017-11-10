@@ -81,6 +81,30 @@ app.get("/count/track", (req, res) => {
   });
 });
 
+//////////////////////////////////////////
+// API to call
+app.get("/checkin/:id", (req, res) => {
+
+  Attendee.findOneAndUpdate(
+    {_id: req.params.id},
+    {checkin: 'CHECKIN'},
+    {new: true, upsert: false},
+    function(err, attendee) {
+      if(err)
+        res.send(err);
+
+      if(attendee != null){
+        res.json({
+          status: true
+        });
+      } else {
+        res.json({
+          status: false
+        });
+      }
+    });
+});
+
 app.get("/count/gender", (req, res) => {
   Attendee.aggregate([
     {
@@ -152,7 +176,7 @@ app.get("/checkin", (req, res) => {
 
 app.post("/checkin", (req, res) => {
   Attendee.findOneAndUpdate(
-    {email: req.body.email},
+    {email: req.body.email.toLowerCase()},
     req.body,
     {new: true, upsert: false},
     function(err, attendee) {
@@ -160,7 +184,7 @@ app.post("/checkin", (req, res) => {
         res.send(err);
 
       if(attendee != null){
-          res.render('checkin-done');
+          res.render('checkin-done', {attendee: attendee});
       } else {
           res.render('checkin', {
             isError: true
@@ -179,7 +203,7 @@ app.post("/walkin", (req, res) => {
     if (err)
       res.send(err);
 
-    res.render('checkin-done');
+    res.render('checkin-done', {attendee: attendee});
   });
 });
 

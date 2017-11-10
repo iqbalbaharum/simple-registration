@@ -61,6 +61,7 @@
           <table class="striped">
             <thead>
               <tr>
+                  <td>Id</td>
                   <th>Full Name</th>
                   <th>Email</th>
                   <th>Knowledges</th>
@@ -75,6 +76,7 @@
             <tbody>
               <% attendees.forEach(function(attendee) { %>
                 <tr>
+                  <td><%= attendee.id %></td>
                   <td><%= attendee.name %></td>
                   <td><%= attendee.email %></td>
                   <td><%= attendee.skills %></td>
