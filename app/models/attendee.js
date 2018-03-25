@@ -19,13 +19,7 @@ var AttendeeSchema = new Schema({
     enum: ['NONE', 'CHECKIN', 'WALKIN'],
     default: 'NONE'
   },
-  state: {
-    type: String,
-    enum: ['NONE', 'JOHOR', 'KEDAH', 'KELANTAN', 'MELAKA', 'NEGERISEMBILAN', 'PAHANG',
-    'PERAK', 'PERLIS', 'PULAUPINANG', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERENGGANU',
-    'KUALALUMPUR', 'LABUAN', 'PUTRAJAYA','OTHER'],
-    default: 'NONE'
-  },
+  university: String,
   gender: {
     type: String,
     enum: ['NONE', 'MALE', 'FEMALE'],

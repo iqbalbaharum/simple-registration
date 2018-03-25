@@ -3,11 +3,12 @@
  * OVERRIDE MATERIALIZECSS
  ********************/
 body{
-  font-family: "Source Code Pro", "monaco", "PT Mono", "Courier", monospace;
+  /* font-family: "Source Code Pro", "monaco", "PT Mono", "Courier", monospace; */
+  font-family: 'Muli', sans-serif;
   font-weight: 400;
   font-size: 18px;
-  /*background-color: #000;
-  color: #fff;*/
+  background-color: #000;
+  color: #fff;
 }
 
 .tabs .tab a:hover, .tabs .tab a.active{

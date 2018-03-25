@@ -5,7 +5,7 @@ var express = require('express'),
     auth = require('http-auth');
 
 var Attendee = require('./app/models/attendee');
-var Email = require('./app/controller/mailController');
+// var Email = require('./app/controller/mailController');
 var config = require('./config');
 
 var port = 3000;
@@ -13,7 +13,7 @@ var port = 3000;
 var app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/meetup3', {
+mongoose.connect('mongodb://localhost/krenovator', {
   useMongoClient: true
 });
 
@@ -42,7 +42,7 @@ app.get('/register', (req, res) => {
 var basic = auth.basic({
       realm: "Authentication Area"
   }, function (username, password, callback) {
-      callback(username === "meetup3" && password === "123jaya");
+      callback(username === "krenovator" && password === "123jaya");
   }
 );
 
@@ -162,7 +162,7 @@ app.post("/register", (req, res) => {
     if (err) {
       res.send(err);
     } else {
-      Email.send_welcome_mail(req, res, attendee._id);
+      // Email.send_welcome_mail(req, res, attendee._id);
       res.render('success');
     }
   });
@@ -176,7 +176,9 @@ app.get("/checkin", (req, res) => {
 
 app.post("/checkin", (req, res) => {
   Attendee.findOneAndUpdate(
-    {email: req.body.email.toLowerCase()},
+    {
+      email: req.body.email.toLowerCase()
+    },
     req.body,
     {new: true, upsert: false},
     function(err, attendee) {
