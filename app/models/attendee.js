@@ -7,8 +7,6 @@ var AttendeeSchema = new Schema({
 
   name: String,
   email: String,
-  skills: String,
-  github: String,
   track: {
     type: String,
     required: 'Need a class to attend',

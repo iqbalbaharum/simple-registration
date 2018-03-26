@@ -6,9 +6,9 @@ var express = require('express'),
 
 var Attendee = require('./app/models/attendee');
 // var Email = require('./app/controller/mailController');
-var config = require('./config');
+// var config = require('./config');
 
-var port = 3000;
+var port = 8080;
 
 var app = express();
 
@@ -195,8 +195,8 @@ app.post("/checkin", (req, res) => {
     });
 });
 
-app.get("/walkin", (req, res) => {
-    res.render('walkin');
+app.get("/success", (req, res) => {
+    res.render('success');
 });
 
 app.post("/walkin", (req, res) => {
