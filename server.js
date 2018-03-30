@@ -22,6 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
 
+app.get('/', (req, res) => {
+  res.render('home');
+});
+
 app.get('/register', (req, res) => {
   Attendee.find({}, function(err, attendees) {
     if(err)

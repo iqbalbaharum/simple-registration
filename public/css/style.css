@@ -116,3 +116,7 @@ a.text-hyperlink {
 .notes-medium {
   font-size: 12px;
 }
+
+.section {
+  height:100vh;
+}
