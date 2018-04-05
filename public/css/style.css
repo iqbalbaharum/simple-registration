@@ -120,3 +120,7 @@ a.text-hyperlink {
 .section {
   height:100vh;
 }
+
+.title-bar {
+  padding:4px;
+}
