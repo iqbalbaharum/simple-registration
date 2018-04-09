@@ -58,30 +58,24 @@
         </div>
 
         <div class="section">
-          <table class="striped">
+          <table>
             <thead>
               <tr>
-                  <td>Id</td>
                   <th>Full Name</th>
                   <th>Email</th>
-                  <th>Knowledges</th>
-                  <th>Github</th>
+                  <th>University</th>
                   <th>Gender</th>
-                  <th>State</th>
                   <th>Track</th>
-                  <th>Status</th>
+                  <th>Check-In</th>
               </tr>
             </thead>
 
             <tbody>
               <% attendees.forEach(function(attendee) { %>
                 <tr>
-                  <td><%= attendee.id %></td>
                   <td><%= attendee.name %></td>
                   <td><%= attendee.email %></td>
-                  <td><%= attendee.skills %></td>
-                  <td><%= attendee.github %></td>
-                  <td><%= attendee.gender %></td>
+                  <td><%= attendee.university %></td>
                   <td><%= attendee.state %></td>
                   <td><%= attendee.track %></td>
                   <td>
