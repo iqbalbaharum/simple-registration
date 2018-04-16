@@ -2,7 +2,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     ejs = require('ejs'),
-    auth = require('http-auth');
+    auth = require('http-auth'),
+    path = require('path');
 
 var Attendee = require('./app/models/attendee');
 // var Email = require('./app/controller/mailController');
@@ -23,7 +24,8 @@ app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.render('home');
+  // res.render('home');
+  res.sendFile(path.join(__dirname+"/../website/index.html"));
 });
 
 app.get('/register', (req, res) => {
@@ -88,6 +90,28 @@ app.get("/count/track", (req, res) => {
 //////////////////////////////////////////
 // API to call
 app.get("/checkin/:id", (req, res) => {
+
+  Attendee.findOneAndUpdate(
+    {_id: req.params.id},
+    {checkin: 'CHECKIN'},
+    {new: true, upsert: false},
+    function(err, attendee) {
+      if(err)
+        res.send(err);
+
+      if(attendee != null){
+        res.json({
+          status: true
+        });
+      } else {
+        res.json({
+          status: false
+        });
+      }
+    });
+});
+
+app.get("/checkin/:", (req, res) => {
 
   Attendee.findOneAndUpdate(
     {_id: req.params.id},
@@ -195,6 +219,38 @@ app.post("/checkin", (req, res) => {
           res.render('checkin', {
             isError: true
           });
+      }
+    });
+});
+
+app.post("/mobilecheckin", (req, res) => {
+  Attendee.findOneAndUpdate(
+    {
+      email: req.body.email.toLowerCase()
+    },
+    req.body,
+    {new: true, upsert: false},
+    function(err, attendee) {
+      if(err) {
+        res.json({
+          status: false,
+          error: err
+        });
+      }
+
+      if(attendee != null){
+        res.json({
+          status: true,
+          attendee: attendee
+        });
+          // res.render('checkin-done', {attendee: attendee});
+      } else {
+        res.json({
+          status: false
+        });
+          // res.render('checkin', {
+          //   isError: true
+          // });
       }
     });
 });
