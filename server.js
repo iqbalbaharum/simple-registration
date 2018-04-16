@@ -2,18 +2,19 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     ejs = require('ejs'),
-    auth = require('http-auth');
+    auth = require('http-auth'),
+    path = require('path');
 
 var Attendee = require('./app/models/attendee');
-var Email = require('./app/controller/mailController');
-var config = require('./config');
+// var Email = require('./app/controller/mailController');
+// var config = require('./config');
 
-var port = 3000;
+var port = 8080;
 
 var app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/meetup3', {
+mongoose.connect('mongodb://localhost/krenovator', {
   useMongoClient: true
 });
 
@@ -21,6 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+  // res.render('home');
+  res.sendFile(path.join(__dirname+"/../website/index.html"));
+});
 
 app.get('/register', (req, res) => {
   Attendee.find({}, function(err, attendees) {
@@ -42,7 +48,7 @@ app.get('/register', (req, res) => {
 var basic = auth.basic({
       realm: "Authentication Area"
   }, function (username, password, callback) {
-      callback(username === "meetup3" && password === "123jaya");
+      callback(username === "krenovator" && password === "123jaya");
   }
 );
 
@@ -84,6 +90,28 @@ app.get("/count/track", (req, res) => {
 //////////////////////////////////////////
 // API to call
 app.get("/checkin/:id", (req, res) => {
+
+  Attendee.findOneAndUpdate(
+    {_id: req.params.id},
+    {checkin: 'CHECKIN'},
+    {new: true, upsert: false},
+    function(err, attendee) {
+      if(err)
+        res.send(err);
+
+      if(attendee != null){
+        res.json({
+          status: true
+        });
+      } else {
+        res.json({
+          status: false
+        });
+      }
+    });
+});
+
+app.get("/checkin/:", (req, res) => {
 
   Attendee.findOneAndUpdate(
     {_id: req.params.id},
@@ -162,7 +190,7 @@ app.post("/register", (req, res) => {
     if (err) {
       res.send(err);
     } else {
-      Email.send_welcome_mail(req, res, attendee._id);
+      // Email.send_welcome_mail(req, res, attendee._id);
       res.render('success');
     }
   });
@@ -176,7 +204,9 @@ app.get("/checkin", (req, res) => {
 
 app.post("/checkin", (req, res) => {
   Attendee.findOneAndUpdate(
-    {email: req.body.email.toLowerCase()},
+    {
+      email: req.body.email.toLowerCase()
+    },
     req.body,
     {new: true, upsert: false},
     function(err, attendee) {
@@ -193,8 +223,40 @@ app.post("/checkin", (req, res) => {
     });
 });
 
-app.get("/walkin", (req, res) => {
-    res.render('walkin');
+app.post("/mobilecheckin", (req, res) => {
+  Attendee.findOneAndUpdate(
+    {
+      email: req.body.email.toLowerCase()
+    },
+    req.body,
+    {new: true, upsert: false},
+    function(err, attendee) {
+      if(err) {
+        res.json({
+          status: false,
+          error: err
+        });
+      }
+
+      if(attendee != null){
+        res.json({
+          status: true,
+          attendee: attendee
+        });
+          // res.render('checkin-done', {attendee: attendee});
+      } else {
+        res.json({
+          status: false
+        });
+          // res.render('checkin', {
+          //   isError: true
+          // });
+      }
+    });
+});
+
+app.get("/success", (req, res) => {
+    res.render('success');
 });
 
 app.post("/walkin", (req, res) => {
